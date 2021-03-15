@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <title>Supermarket Management System</title>
+</head>
+<body>
+    <header>
+        <div class="title">Supermarket Management System</div>
+    </header>
+    <main>
+        <section id="formSection">
+            <form id="form">
+                <h2 id="formTitle">Add Product</h2>
+                <div class="inputContainer">
+                    <label for="name">Product's Name</label>
+                    <input type="text" name="name" id="name">
+                </div>
+                <div class="inputContainer">
+                    <label for="price">Product's Price ($)</label>
+                    <input type="number" name="price" id="price">
+                </div>
+                <div class="inputContainer">
+                    <label for="price">Product's Price</label>
+                    <input type="number" name="price" id="price">
+                </div>
+                <div class="inputContainer">
+                    <label for="category">Product's Price</label>
+                    <select name="category" id="category">
+                        <option value="frozen">Frozen</option>
+                        <option value="vegetables">Vegetables</option>
+                        <option value="snacks">Snacks</option>
+                    </select>
+                    <button type="submit">Add Product</button>
+                </div>
+            </form>
+        </section>
+        <section id="resultSection">
+            <table>
+                <tr>
+                    <th>id</th>
+                    <th>Name</th>
+                    <th>Price ($)</th>
+                    <th>Category</th>
+                    <th>Quantity</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Cheps</td>
+                    <td>5</td>
+                    <td>snacks</td>
+                    <td>5 <span><a>+</a> / <a>-</a></span></td>
+                    <td><a>Delete</a></td>
+                </tr>
+            </table>
+        </section>
+    </main>
+    <script src="./js/app.js"></script>
+</body>
+</html>
