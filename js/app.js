@@ -1,22 +1,21 @@
 let products = [];
 
 // product constructor
-function Product(id, name, price, category, quantity) {
-  this.id = parseInt(id);
+function Product(name, price, category, quantity) {
   this.name = name;
-  this.price = parseInt(price);
+  this.price = price;
   this.category = category;
-  this.quantity = parseInt(quantity);
+  this.quantity = quantity;
   products.push(this);
 }
 
 // prototype function to render one product row inside the table
-Product.prototype.renderProductRow = function () {
+Product.prototype.renderProductRow = function (id) {
   const tableEl = document.getElementsByTagName('table')[0];
   const trEl = document.createElement('tr');
   tableEl.appendChild(trEl);
   const td1El = document.createElement('td');
-  td1El.textContent = this.id;
+  td1El.textContent = parseInt(id) + 1;
   trEl.appendChild(td1El);
   const td2El = document.createElement('td');
   td2El.textContent = this.name;
@@ -28,10 +27,10 @@ Product.prototype.renderProductRow = function () {
   td4El.textContent = this.category;
   trEl.appendChild(td4El);
   const td5El = document.createElement('td');
-  td5El.innerHTML = `${this.quantity} <span><a onclick="dec(${this.id})">-</a> / <a onclick="inc(${this.id})">+</a></span>`;
+  td5El.innerHTML = `${this.quantity} <span><a onclick="dec(${id})">-</a> / <a onclick="inc(${id})">+</a></span>`;
   trEl.appendChild(td5El);
   const td6El = document.createElement('td');
-  td6El.innerHTML = `<a onclick="del(${this.id})">Delete</a>`;
+  td6El.innerHTML = `<a onclick="del(${id})">Delete</a>`;
   trEl.appendChild(td6El);
 };
 
@@ -60,7 +59,7 @@ function renderHeader() {
 // function to render all products rows
 function renderProducts() {
   for(let i in products){
-    products[i].renderProductRow();
+    products[i].renderProductRow(i);
   }
 }
 
@@ -76,24 +75,21 @@ function getFromLocalStorage() {
 
 // function to delete product from products, save the new version to localStorage and render the whole table again
 function del(i) {
-  let index = products.findIndex((item) => item.id == i);
-  products.splice(index, 1);
+  products.splice(i, 1);
   saveToLocalStorage();
   renderTable();
 }
 
 // function to increase the quantity of product
 function inc(i) {
-  let index = products.findIndex((item) => item.id == i);
-  products[index].quantity += 1;
+  products[i].quantity += 1;
   saveToLocalStorage();
   renderTable();
 }
 
 // function to decrease the quantity of product
 function dec(i) {
-  let index = products.findIndex((item) => item.id == i);
-  products[index].quantity -= 1;
+  products[i].quantity -= 1;
   saveToLocalStorage();
   renderTable();
 }
@@ -101,19 +97,16 @@ function dec(i) {
 // function to handle submitting the form
 function handleSumbit(e) {
   e.preventDefault();
-  let id = 1;
-  if(products.length > 0){
-    id = products[products.length - 1].id + 1;
-  } else {
+  if(products.length === 0){
     renderHeader();
   }
   let name = e.target.name.value;
-  let price = e.target.price.value;
+  let price = parseInt(e.target.price.value);
   let category = e.target.category.value;
-  let quantity = e.target.quantity.value;
-  let newProduct = new Product(id, name, price, category, quantity);
+  let quantity = parseInt(e.target.quantity.value);
+  let newProduct = new Product(name, price, category, quantity);
   saveToLocalStorage();
-  newProduct.renderProductRow();
+  newProduct.renderProductRow(products.length - 1);
 }
 
 // function to make products objects after getting them from localStorage
@@ -121,7 +114,7 @@ function createProductsObjects() {
   let productsList = getFromLocalStorage() || [];
   if(productsList.length > 0){
     for(let i in productsList){
-      new Product(productsList[i].id, productsList[i].name, productsList[i].price, productsList[i].category, productsList[i].quantity);
+      new Product(productsList[i].name, productsList[i].price, productsList[i].category, productsList[i].quantity);
     }
   }
 }
