@@ -2,7 +2,7 @@
 
 ## Supermarket Management System
 
-**The app has been built as a preperation for the code 301 Code exam.**
+**The web page has been built as a preparation to code 301 Code entrance exam.**
 
 ## Featrues
 
@@ -14,4 +14,8 @@
 
 ## Links
 
+<<<<<<< HEAD
 [Live url to app](https://wesamalmasri.github.io/Supermarket-MS/)
+=======
+[Live url to web page](https://wesamalmasri.github.io/Supermarket-MS/)
+>>>>>>> 9303cf153655c4bde8837296cd19f2d28fca1aeb
