@@ -26,9 +26,6 @@ main {
     padding: 50px;
 }
 
-section {
-
-}
 
 #formSection {
     width: 40%;
@@ -98,4 +95,18 @@ table, td, th {
   td a:first-child {
     color: red;
     font-weight: 400;
+  }
+
+
+  @media screen and (max-width: 1000px) {
+    main {
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    #formSection, #resultSection {
+        width: 100%;
+        min-width: 500px;
+        margin-top: 10px;
+    }
   }
